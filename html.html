@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Number Changer</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        #number {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="number"></div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        const numberDisplay = document.getElementById('number');
+        const startButton = document.getElementById('start');
+        const stopButton = document.getElementById('stop');
+
+        let isChanging = false;
+        let intervalId;
+
+        function changeNumber() {
+            const randomNum = Math.floor(Math.random() * 10); // Generate random number from 0 to 9
+            numberDisplay.textContent = randomNum;
+        }
+
+        startButton.addEventListener('click', () => {
+            if (!isChanging) {
+                isChanging = true;
+                intervalId = setInterval(changeNumber, 100); // Change every 100ms (0.1s)
+            }
+        });
+
+        stopButton.addEventListener('click', () => {
+            if (isChanging) {
+                clearInterval(intervalId);
+                isChanging = false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
